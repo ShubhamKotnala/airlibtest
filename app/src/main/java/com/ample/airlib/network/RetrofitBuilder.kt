@@ -12,7 +12,7 @@ object RetrofitBuilder {
     private lateinit var sOkHttpClient: OkHttpClient
 
     private const val BASE_URL = "https://run.mocky.io/"
-//https://run.mocky.io/v3/e5513b46-b653-4dd2-92c1-275b22187ac3
+
     private fun getRetrofit(): Retrofit {
     val builder: OkHttpClient.Builder =
         OkHttpClient.Builder()
@@ -20,6 +20,7 @@ object RetrofitBuilder {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
+
     sOkHttpClient = OkHttpClient()
 
     if (BuildConfig.DEBUG) {
@@ -34,7 +35,6 @@ object RetrofitBuilder {
             .client(sOkHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
     }
 
     val apiService: ApiService = getRetrofit().create(ApiService::class.java)
