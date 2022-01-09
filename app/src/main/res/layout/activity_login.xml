@@ -151,7 +151,6 @@
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:background="@drawable/orange_button_background"
                 android:clickable="true"
-                android:enabled="false"
                 android:focusable="true"
                 android:fontFamily="@font/roboto_medium"
                 android:imeOptions="actionDone"

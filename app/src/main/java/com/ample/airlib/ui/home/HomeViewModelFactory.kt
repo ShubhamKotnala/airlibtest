@@ -2,7 +2,6 @@ package com.ample.airlib.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ample.airlib.data.HomeDataSource
 import com.ample.airlib.data.HomeRepository
 import com.ample.airlib.data.LoginDao
 import com.ample.airlib.network.ApiService
@@ -12,8 +11,7 @@ class HomeViewModelFactory(private val apiHelper: ApiService, private val dao: L
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(homeRepository = HomeRepository(
-                dataSource = HomeDataSource(apiHelper), dao)) as T
+            return HomeViewModel(homeRepository = HomeRepository(apiHelper, dao)) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

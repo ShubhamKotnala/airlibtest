@@ -41,45 +41,18 @@ class LoginActivity : AppCompatActivity() {
         /** initialising view model */
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory(RetrofitBuilder.apiService,  database.loginDao()))[LoginViewModel::class.java]
 
-        loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
-            val loginState = it ?: return@Observer
+        observeDataUI()
 
-            login.isEnabled = loginState.isDataValid
-
-            if (loginState.usernameError != null)
-                username?.error = getString(loginState.usernameError)
-
-            if (loginState.passwordError != null)
-                password?.error = getString(loginState.passwordError)
-        })
-
-        username?.afterTextChanged {
-            loginViewModel.loginDataChanged(username.text.toString(), password?.text.toString())
+        login.setOnClickListener {
+            loginViewModel.loginDataChanged(binding.editUsername?.text.toString(),
+                binding.editPassword?.text.toString())
         }
-
-        password?.apply {
-            this.afterTextChanged {
-                loginViewModel.loginDataChanged(username?.text.toString(), password.text.toString())
-            }
-
-            setOnEditorActionListener { _, actionId, _ ->
-                when (actionId) {
-                    EditorInfo.IME_ACTION_DONE -> {
-                        if (login.isEnabled)
-                            callLogin()
-                    }
-                }
-                false
-            }
-        }
-
-        login.setOnClickListener { callLogin() }
     }
 
     /** fun to call and observe login api */
     private fun callLogin() {
         loginViewModel.callLogin(binding.editUsername?.text.toString(),
-            binding.editPassword?.text.toString()).observe(this, Observer {
+            binding.editPassword?.text.toString()).observe(this, {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
@@ -94,6 +67,21 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     }
                     Status.LOADING -> binding.loading.visibility = View.VISIBLE
+                }
+            }
+        })
+    }
+
+    private fun observeDataUI() {
+        loginViewModel._loginForm.observe(this, {
+            it?.let { resource ->
+                when (resource.status) {
+                    Status.SUCCESS -> {
+                        callLogin()
+                    }
+                    Status.ERROR -> {
+                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         })
@@ -117,18 +105,4 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
-}
-/**
- * Extension function to simplify setting an afterTextChanged action to EditText components.
- */
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
-        }
-
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-    })
 }

@@ -14,7 +14,6 @@ abstract class LoginDatabase : RoomDatabase() {
     abstract fun loginDao(): LoginDao
 
     companion object {
-        // same time.
         const val DB_NAME = "airlib_database"
         @Volatile
         private var INSTANCE: LoginDatabase? = null
