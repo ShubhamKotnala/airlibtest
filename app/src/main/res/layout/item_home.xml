@@ -1,0 +1,138 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    app:cardCornerRadius="@dimen/_10sdp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:drawableEnd="@drawable/ic_problem"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="start"
+            android:text="@string/welcome"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="start"
+                android:text="@string/dose"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="start"
+                android:text="@string/strength"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/dose1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/strength1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="start"
+                android:text="@string/strength"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/dose2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="start"
+                android:text="@string/dose"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/strength2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="start"
+                android:text="@string/strength"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
