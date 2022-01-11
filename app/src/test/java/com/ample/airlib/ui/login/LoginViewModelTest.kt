@@ -72,7 +72,7 @@ class LoginViewModelTest : TestCase() {
         loginViewModel.loginDataChanged("username", "password")
 
         loginViewModel._loginForm.getOrAwaitValue().let {
-            it.status == Status.ERROR
+            it.status == Status.SUCCESS
         }
         assertThat(loginViewModel._loginForm.value?.data == Status.SUCCESS).isTrue()
         loginViewModel._loginForm.removeObserver(apiUsersObserver)
